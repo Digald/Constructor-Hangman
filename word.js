@@ -12,17 +12,16 @@ function Word() {
     "Hard Drive",
     "Solid State Drive"
   ];
-  this.selectRandomWord = function() {
+  this.selectRandomWord = function () {
     var chosenWord = this.wordList[
       Math.floor(Math.random() * this.wordList.length)
     ];
     console.log(chosenWord);
     return chosenWord;
   };
-  this.compareWords = function() {};
+  this.compareWords = function () { };
 }
 
 var word = new Word();
-word.selectRandomWord();
 
 module.exports = Word;
