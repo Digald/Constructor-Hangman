@@ -1,0 +1,24 @@
+Word file
+-------------------------------------
+1) Make list of words
+2) Choose a word at random
+3) check if combined letter-word matches the chosen word at random and log right or wrong
+
+Letter File
+--------------------------------------
+1) Split chosen word into an array
+2) replace each letter with a blank space
+3) check user input against the array of letters
+4) if user input is correct, replace blank space with correct letter
+
+
+CLI
+------------------------------------
+1) console log letter blanks
+2) ask user to enter a single letter
+3) console log correct or wrong
+4) console log updated letters
+5) If letter is solves or lives are gone, ask to play again.
+    - If yes, run again
+    - If no, stop program
+6) If letter is not solved, go back to step 2
