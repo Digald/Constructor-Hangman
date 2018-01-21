@@ -12,6 +12,24 @@ var question = {
   message: "Guess a letter..."
 };
 
+// function playGame() {
+//     if (word still needs to be solved) {
+//         inquirer
+//     } else {
+//         playAgain()
+//     }
+// }
+
+// function playAgain() {
+//     inquirer;
+//         if yes {
+//             playGame()
+//         } else{
+//             console.log("bye")
+//         }
+// }
+
+
 inquirer.prompt(question).then(function(answer) {
   console.log("it works");
 });
