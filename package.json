@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Digald/Constructor-Hangman#readme",
   "dependencies": {
-    "inquirer": "^5.0.0"
+    "inquirer": "^5.0.0",
+    "joi": "^13.1.1"
   }
 }

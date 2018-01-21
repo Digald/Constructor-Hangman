@@ -3,14 +3,14 @@ var Letter = require("./letter.js");
 
 function Word() {
   this.wordList = [
-    "Central Processing Unit",
-    "Motherboard",
-    "Random Access Memory",
-    "Power Supply",
-    "Video Card",
-    "Case",
-    "Hard Drive",
-    "Solid State Drive"
+    "central crocessing unit",
+    "motherboard",
+    "random access memory",
+    "power supply",
+    "video card",
+    "case",
+    "hard drive",
+    "solid state drive"
   ];
   this.selectRandomWord = function() {
     var chosenWord = this.wordList[
