@@ -18,13 +18,13 @@ function Letter() {
     });
     return arrOfBlanks.join("");
   };
-  this.changeBlankToLetter = function(letter, blankArr) {
+  this.changeBlankToLetter = function(letter, blankArr, wordArr) {
     for (var i; i < blankArr.length; i++) {
-      if (letter === blankArr[i]) {
-        // console.log(blankArr[i] = letter)
-        return blankArr[i] = letter;
+      if (letter === wordArr[i]) {
+        blankArr[i] = letter;
       }
     }
+    return blankArr;
   };
 }
 // export Letter constructor

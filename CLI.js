@@ -57,16 +57,17 @@ var playGame = function() {
     // check if the letter is a part of the word
     if (readyWord.indexOf(input) !== -1) {
       console.log("CORRECT!");
-      console.log(lives);
-      letter.changeBlankToLetter(input, blankArray);
+      console.log("lives: " + lives);
+      console.log(letter.changeBlankToLetter(input, blankArray, readyWord));
     } else {
       lives--;
-      console.log(lives);
+      console.log("Lives: " + lives);
       console.log("WRONG!");
     }
   });
   // }
 };
+
 var readyWord = letter.splitWord();
 var blankArray = letter.toBlanks(readyWord).split("");
 console.log(readyWord);
