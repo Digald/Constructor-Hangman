@@ -48,9 +48,8 @@ function validateSingleLetter(name) {
   ];
   return name.length === 1 && chars.indexOf(name.toLowerCase()) !== -1;
 }
-var playGame = function() {
-  console.log(letter.toBlanks(readyWord));
-  // console.log(letter.toBlanks(readyWord).split(""));
+var playGame = function(updateWord) {
+  console.log(updateWord);
   // if (dashes + letters !== total) {
   inquirer.prompt(question).then(function(answer) {
     var input = answer.letterInput;
@@ -59,7 +58,12 @@ var playGame = function() {
       console.log("CORRECT!");
       console.log("lives: " + lives);
       // try to make global variables and set the return equal to them?
-      console.log(letter.changeBlankToLetter(input, blankArray, readyWord));
+      showBlanksToPlayer = letter.changeBlankToLetter(
+        input,
+        blankArray,
+        readyWord
+      );
+      playGame(showBlanksToPlayer);
     } else {
       lives--;
       console.log("Lives: " + lives);
@@ -68,11 +72,16 @@ var playGame = function() {
   });
   // }
 };
-
-var readyWord = letter.splitWord();
-var blankArray = letter.toBlanks(readyWord).split("");
-console.log(readyWord);
-playGame();
+var newWord = function() {
+  // Create word for the first time
+  var readyWord = letter.splitWord();
+  var blankArray = letter.toBlanks(readyWord).split("");
+  var showBlanksToPlayer = letter.toBlanks(readyWord);
+  console.log(showBlanksToPlayer);
+  // Loop the game until user wins or looses
+  playGame();
+};
+newWord();
 
 // function playGame() {
 //     if (word still needs to be solved) {

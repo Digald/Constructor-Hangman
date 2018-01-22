@@ -19,7 +19,7 @@ function Letter() {
     return arrOfBlanks.join("");
   };
   this.changeBlankToLetter = function(letter, blankArr, wordArr) {
-    for (var i; i < blankArr.length; i++) {
+    for (var i = 0; i < blankArr.length; i++) {
       if (letter === wordArr[i]) {
         blankArr[i] = letter;
       }
