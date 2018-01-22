@@ -58,6 +58,7 @@ var playGame = function() {
     if (readyWord.indexOf(input) !== -1) {
       console.log("CORRECT!");
       console.log("lives: " + lives);
+      // try to make global variables and set the return equal to them?
       console.log(letter.changeBlankToLetter(input, blankArray, readyWord));
     } else {
       lives--;
