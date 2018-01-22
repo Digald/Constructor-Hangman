@@ -21,7 +21,7 @@ function Letter() {
   this.changeBlankToLetter = function(letter, blankArr) {
     for (var i; i < blankArr.length; i++) {
       if (letter === blankArr[i]) {
-        console.log(blankArr[i] = letter);
+        // console.log(blankArr[i] = letter)
         return blankArr[i] = letter;
       }
     }

@@ -54,8 +54,8 @@ var playGame = function() {
   // if (dashes + letters !== total) {
   inquirer.prompt(question).then(function(answer) {
     var input = answer.letterInput;
-    console.log(answer.letterInput.indexOf(readyWord));
-    if (input.indexOf(readyWord) !== -1) {
+    // check if the letter is a part of the word
+    if (readyWord.indexOf(input) !== -1) {
       console.log("CORRECT!");
       console.log(lives);
       letter.changeBlankToLetter(input, blankArray);
