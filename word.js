@@ -16,10 +16,9 @@ function Word() {
     var chosenWord = this.wordList[
       Math.floor(Math.random() * this.wordList.length)
     ];
-    console.log(chosenWord);
+    // console.log(chosenWord);
     return chosenWord;
   };
-  this.compareWords = function() {};
 }
 
 var word = new Word();

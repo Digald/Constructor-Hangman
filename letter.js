@@ -19,8 +19,14 @@ function Letter() {
     });
     console.log(arrOfBlanks.join(""));
     return arrOfBlanks;
-  }
+  };
+  this.compareWords = function() {
+    if (this.splitWord().indoxOf(answer.letterInput.toLowerCase()) !== -1) {
+      return letters++;
+    }
+  };
 }
+
 var letter = new Letter();
 letter.toBlanks();
 module.exports = Letter;
