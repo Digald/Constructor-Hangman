@@ -6,6 +6,8 @@ var letter = new Letter();
 // keep track of guess
 var dashes = 0;
 var letters = 0;
+var total = 0;
+var lives = 9;
 // inquirer question
 var question = {
   type: "input",
@@ -47,14 +49,27 @@ function validateSingleLetter(name) {
   return name.length === 1 && chars.indexOf(name.toLowerCase()) !== -1;
 }
 var playGame = function() {
+  console.log(letter.toBlanks(readyWord));
+  // console.log(letter.toBlanks(readyWord).split(""));
   // if (dashes + letters !== total) {
   inquirer.prompt(question).then(function(answer) {
-    console.log("You guessed: " + answer.letterInput);
-    letter.compareWords();
+    var input = answer.letterInput;
+    console.log(answer.letterInput.indexOf(readyWord));
+    if (input.indexOf(readyWord) !== -1) {
+      console.log("CORRECT!");
+      console.log(lives);
+      letter.changeBlankToLetter(input, blankArray);
+    } else {
+      lives--;
+      console.log(lives);
+      console.log("WRONG!");
+    }
   });
   // }
 };
-
+var readyWord = letter.splitWord();
+var blankArray = letter.toBlanks(readyWord).split("");
+console.log(readyWord);
 playGame();
 
 // function playGame() {

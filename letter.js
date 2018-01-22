@@ -5,28 +5,27 @@ function Letter() {
   this.splitWord = function() {
     var chosenWord = word.selectRandomWord();
     var splitWord = chosenWord.split("");
-    console.log(splitWord);
     return splitWord;
   };
-  this.toBlanks = function() {
+  this.toBlanks = function(splitWord) {
     // trying to use split word variable from previous function
-    var arrOfBlanks = this.splitWord().map(function(val) {
+    var arrOfBlanks = splitWord.map(function(val) {
       if (val != " ") {
         return "_";
       } else {
         return "-";
       }
     });
-    console.log(arrOfBlanks.join(""));
-    return arrOfBlanks;
+    return arrOfBlanks.join("");
   };
-  this.compareWords = function() {
-    if (this.splitWord().indoxOf(answer.letterInput.toLowerCase()) !== -1) {
-      return letters++;
+  this.changeBlankToLetter = function(letter, blankArr) {
+    for (var i; i < blankArr.length; i++) {
+      if (letter === blankArr[i]) {
+        console.log(blankArr[i] = letter);
+        return blankArr[i] = letter;
+      }
     }
   };
 }
-
-var letter = new Letter();
-letter.toBlanks();
+// export Letter constructor
 module.exports = Letter;

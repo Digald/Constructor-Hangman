@@ -16,11 +16,9 @@ function Word() {
     var chosenWord = this.wordList[
       Math.floor(Math.random() * this.wordList.length)
     ];
-    // console.log(chosenWord);
     return chosenWord;
   };
 }
 
 var word = new Word();
-
 module.exports = Word;
