@@ -2,7 +2,9 @@ var inquirer = require("inquirer");
 var Joi = require("joi");
 var Letter = require("./letter.js");
 var Word = require("./word.js");
+// create object from constructor
 var letter = new Letter();
+var word = new Word();
 // keep track of guess
 var dashes = 0;
 var letters = 0;
@@ -48,13 +50,17 @@ function validateSingleLetter(name) {
   ];
   return name.length === 1 && chars.indexOf(name.toLowerCase()) !== -1;
 }
-var playGame = function(updateWord) {
+function playGame(updateWord, blankArray, readyWord) {
+  dashes = word.dashes(readyWord);
+  console.log(dashes);
+  console.log(readyWord);
   console.log(updateWord);
   // if (dashes + letters !== total) {
-  inquirer.prompt(question).then(function(answer) {
+  inquirer.prompt(question).then(function (answer) {
     var input = answer.letterInput;
     // check if the letter is a part of the word
     if (readyWord.indexOf(input) !== -1) {
+      console.log(letters);
       console.log("CORRECT!");
       console.log("lives: " + lives);
       // try to make global variables and set the return equal to them?
@@ -63,23 +69,24 @@ var playGame = function(updateWord) {
         blankArray,
         readyWord
       );
-      playGame(showBlanksToPlayer);
+      return playGame(showBlanksToPlayer.join(""), showBlanksToPlayer, readyWord);
     } else {
       lives--;
       console.log("Lives: " + lives);
       console.log("WRONG!");
+
     }
   });
   // }
 };
-var newWord = function() {
+var newWord = function () {
   // Create word for the first time
   var readyWord = letter.splitWord();
   var blankArray = letter.toBlanks(readyWord).split("");
   var showBlanksToPlayer = letter.toBlanks(readyWord);
-  console.log(showBlanksToPlayer);
+  // console.log(showBlanksToPlayer);
   // Loop the game until user wins or looses
-  playGame();
+  playGame(showBlanksToPlayer, blankArray, readyWord);
 };
 newWord();
 
