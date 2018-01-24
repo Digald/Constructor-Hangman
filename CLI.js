@@ -50,7 +50,14 @@ function validateSingleLetter(name) {
   ];
   return name.length === 1 && chars.indexOf(name.toLowerCase()) !== -1;
 }
-function playGame(updateWord, blankArray, readyWord, dashes, total, letterCount) {
+function playGame(
+  updateWord,
+  blankArray,
+  readyWord,
+  dashes,
+  total,
+  letterCount
+) {
   console.log("dashes for word: " + dashes);
   console.log("total characters: " + total);
   // Displays word for the user to guess
@@ -72,6 +79,7 @@ function playGame(updateWord, blankArray, readyWord, dashes, total, letterCount)
       letterCount = word.addLetterCount(showBlanksToPlayer, letterCount);
       console.log("test the letter count: " + letterCount);
       console.log("\n---------------------\n");
+      // recursion
       return playGame(
         showBlanksToPlayer.join(""),
         showBlanksToPlayer,
@@ -82,8 +90,27 @@ function playGame(updateWord, blankArray, readyWord, dashes, total, letterCount)
       );
     } else {
       lives--;
-      console.log("Lives: " + lives);
-      console.log("WRONG!");
+      console.log("\nWRONG!");
+      console.log("\nLives: " + lives);
+      showBlanksToPlayer = letter.changeBlankToLetter(
+        input,
+        blankArray,
+        readyWord
+      );
+      if (lives > 0) {
+        // recursion
+        return playGame(
+          showBlanksToPlayer.join(""),
+          showBlanksToPlayer,
+          readyWord,
+          dashes,
+          total,
+          letterCount
+        );
+      } else if (lives <= 0) {
+        console.log("\nYOU LOST!");
+        playAgain();
+      }
     }
   });
   // }
@@ -101,18 +128,38 @@ var newWord = function() {
   var letterCount = 0;
   // console.log(showBlanksToPlayer);
   // Loop the game until user wins or looses
-  return playGame(showBlanksToPlayer, blankArray, readyWord, dashes, total, letterCount);
+  return playGame(
+    showBlanksToPlayer,
+    blankArray,
+    readyWord,
+    dashes,
+    total,
+    letterCount
+  );
 };
 newWord();
 
-// function playGame() {
-//     if (word still needs to be solved) {
-//         inquirer
-//     } else {
-//         playAgain()
-//     }
-// }
-
+// Prompt that asks players if they want to continue if they win or loose
+function playAgain() {
+  inquirer
+    .prompt({
+      type: "list",
+      name: "play",
+      message: "Do you want to play again?",
+      choices: [
+        "Yes holy crap this was much fun I bet it was so easy to code",
+        "No this game sucked and the code is sloppy"
+      ]
+    })
+    .then(function(answers) {
+      if (answers.play === 'Yes holy crap this was much fun I bet it was so easy to code') {
+        console.log("-----------------------------NEW GAME-------------------------------");
+        return newWord();
+      } else{
+        return console.log("\nOkay then, Goodbye!");
+      }
+    });
+}
 // function playAgain() {
 //     inquirer;
 //         if yes {

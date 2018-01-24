@@ -18,6 +18,7 @@ function Word() {
     ];
     return chosenWord;
   };
+  // Find all the dashes in selected word
   this.dashes = function(blankArray, dashes) {
     for (var i = 0; i < blankArray.length; i++) {
       if (blankArray[i] === "-") {
@@ -26,6 +27,7 @@ function Word() {
     }
     return dashes;
   };
+  // Finds total characters in chosen word
   this.total = function(readyWord, total) {
     for (var i = 0; i < readyWord.length; i++) {
       if (readyWord[i] !== "-") {
@@ -34,6 +36,7 @@ function Word() {
     }
     return total;
   };
+  // Finds how many letters have been guessed in chosen word
   this.addLetterCount = function(showBlanksToPlayer, letterCount) {
     letterCount = 0;
     for (var i = 0; i < showBlanksToPlayer.length; i++) {
