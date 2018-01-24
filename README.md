@@ -27,3 +27,6 @@ node cli.js
 4. Once done you can either restart the game by selecting "yes" or end the game by selecting "no".
 
 ![last step](https://i.gyazo.com/06582da772057946ad2dcaa314268260.png)
+
+## To-Do / Issues
+1. Currently there is nothing stopping a user from entering the same letter twice. I had originally planned to push all entered letters into an array and validate the input but then it would not allow any input to go through. 
