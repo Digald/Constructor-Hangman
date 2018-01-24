@@ -17,6 +17,7 @@ node cli.js
 
 
 2. You should see a user interface like this:
+
 ![step 2](https://i.gyazo.com/e1758ea9789806620eb83090e85132e5.png)
 
 
