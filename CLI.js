@@ -51,9 +51,9 @@ function validateSingleLetter(name) {
   return name.length === 1 && chars.indexOf(name.toLowerCase()) !== -1;
 }
 function playGame(updateWord, blankArray, readyWord) {
-  dashes = word.dashes(readyWord);
+  dashes = word.dashes(blankArray, dashes);
   console.log(dashes);
-  console.log(readyWord);
+  console.log(blankArray);
   console.log(updateWord);
   // if (dashes + letters !== total) {
   inquirer.prompt(question).then(function (answer) {

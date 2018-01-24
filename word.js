@@ -18,13 +18,14 @@ function Word() {
     ];
     return chosenWord;
   };
-  this.dashes = function(splitWord){
-    for (var i = 0; i < splitWord.length; i++) {
-      if (splitWord[i] === "-") {
-        return dash++
+  this.dashes = function(blankArray, dashes){
+    for (var i = 0; i < blankArray.length; i++) {
+      if (blankArray[i] === "-") {
+        dashes++;
       }
     }
-  }
+    return dashes;
+  };
 }
 
 var word = new Word();
