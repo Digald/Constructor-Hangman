@@ -20,6 +20,8 @@ var question = {
 // validate that user only inputs single character
 function validateSingleLetter(name) {
   // var regex = /[a-zA-Z]/;
+  var alreadyGuessedCharacters = [];
+  alreadyGuessedCharacters.push(name.toLowerCase());
   var chars = [
     "a",
     "b",
@@ -58,46 +60,23 @@ function playGame(
   total,
   letterCount
 ) {
-  console.log("dashes for word: " + dashes);
-  console.log("total characters: " + total);
   // Displays word for the user to guess
-  console.log(updateWord);
-  // if (dashes + letterCount !== total) {
-  inquirer.prompt(question).then(function(answer) {
-    var input = answer.letterInput;
-    // check if the letter is a part of the word
-    if (readyWord.indexOf(input) !== -1) {
-      console.log("\nCORRECT!");
-      console.log("\nlives: " + lives);
-      // try to make global variables and set the return equal to them?
-      showBlanksToPlayer = letter.changeBlankToLetter(
-        input,
-        blankArray,
-        readyWord
-      );
-      console.log("test this: " + showBlanksToPlayer);
-      letterCount = word.addLetterCount(showBlanksToPlayer, letterCount);
-      console.log("test the letter count: " + letterCount);
-      console.log("\n---------------------\n");
-      // recursion
-      return playGame(
-        showBlanksToPlayer.join(""),
-        showBlanksToPlayer,
-        readyWord,
-        dashes,
-        total,
-        letterCount
-      );
-    } else {
-      lives--;
-      console.log("\nWRONG!");
-      console.log("\nLives: " + lives);
-      showBlanksToPlayer = letter.changeBlankToLetter(
-        input,
-        blankArray,
-        readyWord
-      );
-      if (lives > 0) {
+  console.log("\n" + updateWord);
+  if (dashes + letterCount !== total) {
+    inquirer.prompt(question).then(function(answer) {
+      var input = answer.letterInput;
+      // check if the letter is a part of the word
+      if (readyWord.indexOf(input) !== -1) {
+        console.log("\nCORRECT!");
+        console.log("\nLives Remaining: " + lives);
+        // try to make global variables and set the return equal to them?
+        showBlanksToPlayer = letter.changeBlankToLetter(
+          input,
+          blankArray,
+          readyWord
+        );
+        letterCount = word.addLetterCount(showBlanksToPlayer, letterCount);
+        console.log("\n-------------Keep it up!-----------------------\n");
         // recursion
         return playGame(
           showBlanksToPlayer.join(""),
@@ -107,13 +86,36 @@ function playGame(
           total,
           letterCount
         );
-      } else if (lives <= 0) {
-        console.log("\nYOU LOST!");
-        playAgain();
+      } else {
+        lives--;
+        console.log("\nWRONG!");
+        console.log("\nLives Remaining: " + lives);
+        showBlanksToPlayer = letter.changeBlankToLetter(
+          input,
+          blankArray,
+          readyWord
+        );
+        if (lives > 0) {
+          console.log("\n-------------Hint: Computer Parts-----------------------\n");
+          // recursion
+          return playGame(
+            showBlanksToPlayer.join(""),
+            showBlanksToPlayer,
+            readyWord,
+            dashes,
+            total,
+            letterCount
+          );
+        } else if (lives <= 0) {
+          console.log("\nYOU LOST!\n");
+          playAgain();
+        }
       }
-    }
-  });
-  // }
+    });
+  } else if (dashes + letterCount === total) {
+    console.log("\nYOU WON!\n");
+    return playAgain();
+  }
 }
 var newWord = function() {
   // Create word for the first time
@@ -126,8 +128,7 @@ var newWord = function() {
   total = word.total(readyWord, total);
   dashes = word.dashes(blankArray, dashes);
   var letterCount = 0;
-  // console.log(showBlanksToPlayer);
-  // Loop the game until user wins or looses
+  // Start the logic now that a word and parameters have been chosen
   return playGame(
     showBlanksToPlayer,
     blankArray,
@@ -139,7 +140,7 @@ var newWord = function() {
 };
 newWord();
 
-// Prompt that asks players if they want to continue if they win or loose
+// Prompt that asks players if they want to continue if they win or lose
 function playAgain() {
   inquirer
     .prompt({
@@ -152,19 +153,16 @@ function playAgain() {
       ]
     })
     .then(function(answers) {
-      if (answers.play === 'Yes holy crap this was much fun I bet it was so easy to code') {
-        console.log("-----------------------------NEW GAME-------------------------------");
+      if (
+        answers.play ===
+        "Yes holy crap this was much fun I bet it was so easy to code"
+      ) {
+        console.log(
+          "-----------------------------NEW GAME-------------------------------"
+        );
         return newWord();
-      } else{
+      } else {
         return console.log("\nOkay then, Goodbye!");
       }
     });
 }
-// function playAgain() {
-//     inquirer;
-//         if yes {
-//             playGame()
-//         } else{
-//             console.log("bye")
-//         }
-// }

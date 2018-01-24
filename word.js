@@ -20,6 +20,7 @@ function Word() {
   };
   // Find all the dashes in selected word
   this.dashes = function(blankArray, dashes) {
+    dashes = 0;
     for (var i = 0; i < blankArray.length; i++) {
       if (blankArray[i] === "-") {
         dashes++;
@@ -29,6 +30,7 @@ function Word() {
   };
   // Finds total characters in chosen word
   this.total = function(readyWord, total) {
+    total = 0;
     for (var i = 0; i < readyWord.length; i++) {
       if (readyWord[i] !== "-") {
         total++;
