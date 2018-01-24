@@ -61,7 +61,8 @@ function playGame(
   letterCount
 ) {
   // Displays word for the user to guess
-  console.log("\n" + updateWord);
+  // console.log("\n" + updateWord);
+  console.log('\n' + word.makeWordReadable(updateWord));
   if (dashes + letterCount !== total) {
     inquirer.prompt(question).then(function(answer) {
       var input = answer.letterInput;

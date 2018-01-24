@@ -48,6 +48,13 @@ function Word() {
     }
     return letterCount;
   };
+  this.makeWordReadable = function(updateWord) {
+    var newStr = '';
+    for (var i = 0; i < updateWord.length; i++){
+      newStr += updateWord.charAt(i) + ' ';
+    }
+    return newStr;
+  }
 }
 
 var word = new Word();
