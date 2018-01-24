@@ -7,7 +7,7 @@ var letter = new Letter();
 var word = new Word();
 // keep track of guess
 var dashes = 0;
-var letters = 0;
+// var letterCount = 0;
 var total = 0;
 var lives = 9;
 // inquirer question
@@ -50,43 +50,58 @@ function validateSingleLetter(name) {
   ];
   return name.length === 1 && chars.indexOf(name.toLowerCase()) !== -1;
 }
-function playGame(updateWord, blankArray, readyWord) {
-  dashes = word.dashes(blankArray, dashes);
-  console.log(dashes);
-  console.log(blankArray);
+function playGame(updateWord, blankArray, readyWord, dashes, total, letterCount) {
+  console.log("dashes for word: " + dashes);
+  console.log("total characters: " + total);
+  // Displays word for the user to guess
   console.log(updateWord);
-  // if (dashes + letters !== total) {
-  inquirer.prompt(question).then(function (answer) {
+  // if (dashes + letterCount !== total) {
+  inquirer.prompt(question).then(function(answer) {
     var input = answer.letterInput;
     // check if the letter is a part of the word
     if (readyWord.indexOf(input) !== -1) {
-      console.log(letters);
-      console.log("CORRECT!");
-      console.log("lives: " + lives);
+      console.log("\nCORRECT!");
+      console.log("\nlives: " + lives);
       // try to make global variables and set the return equal to them?
       showBlanksToPlayer = letter.changeBlankToLetter(
         input,
         blankArray,
         readyWord
       );
-      return playGame(showBlanksToPlayer.join(""), showBlanksToPlayer, readyWord);
+      console.log("test this: " + showBlanksToPlayer);
+      letterCount = word.addLetterCount(showBlanksToPlayer, letterCount);
+      console.log("test the letter count: " + letterCount);
+      console.log("\n---------------------\n");
+      return playGame(
+        showBlanksToPlayer.join(""),
+        showBlanksToPlayer,
+        readyWord,
+        dashes,
+        total,
+        letterCount
+      );
     } else {
       lives--;
       console.log("Lives: " + lives);
       console.log("WRONG!");
-
     }
   });
   // }
-};
-var newWord = function () {
+}
+var newWord = function() {
   // Create word for the first time
   var readyWord = letter.splitWord();
+  // Create an array of blanks
   var blankArray = letter.toBlanks(readyWord).split("");
+  // Create a string of blanks to display to player
   var showBlanksToPlayer = letter.toBlanks(readyWord);
+  // total keeps track of characters and dashes keeps track of the dashes
+  total = word.total(readyWord, total);
+  dashes = word.dashes(blankArray, dashes);
+  var letterCount = 0;
   // console.log(showBlanksToPlayer);
   // Loop the game until user wins or looses
-  playGame(showBlanksToPlayer, blankArray, readyWord);
+  return playGame(showBlanksToPlayer, blankArray, readyWord, dashes, total, letterCount);
 };
 newWord();
 
