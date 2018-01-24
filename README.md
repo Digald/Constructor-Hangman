@@ -25,4 +25,5 @@ node cli.js
 
 
 4. Once done you can either restart the game by selecting "yes" or end the game by selecting "no".
+
 ![last step](https://i.gyazo.com/06582da772057946ad2dcaa314268260.png)
